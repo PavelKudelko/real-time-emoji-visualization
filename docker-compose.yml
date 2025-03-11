@@ -1,0 +1,51 @@
+# This is the docker-compose-yml file that must be able to start
+# your group's backend.
+
+# Remember to comment this file well!
+
+services:
+
+  # You can base this service on a bitnami/kafka Docker Hub image.
+  # You need to expose the kafka port to other containers
+  # in this  docker-compose.yml
+  # A set of needed Docker instructions like 'image:' are shown
+  # below, groups should set their values. Groups are free to
+  # CRUD the set of instructions as they see fit.
+#  kafka:
+#    image:
+#    networks:
+#    ports:
+#    environment:
+
+  server_a:
+    build: ./backend/server_a
+    ports:
+      - "3000:3000"
+    depends_on:
+      - kafka
+    environment:
+      - KAFKA_BROKER=kafka:9092
+    networks:
+      - backend
+
+  # much of the server_b service entry can be copied from server_a
+  # service above. Groups are free to
+  # CRUD this set of instructions as they see fit.
+  # server_b:
+      # build:
+      # depends_on:
+      # environment:
+      # networks:
+
+# Here we create a named network, that all the backend components
+# must be added to for them to be able to communicate through
+# exposed ports.
+networks:
+  backend:
+
+# If you use databases for storing information, you can define
+# their volumes here.
+# Documentation: https://docs.docker.com/storage/volumes/
+# Personally I like to look at the database's image's Dockerfile
+# in the Docker Hub to see what directory it uses to store data.
+# volumes:
