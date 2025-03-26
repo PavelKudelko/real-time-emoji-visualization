@@ -1,46 +1,29 @@
-const express = require('express');
-const WebSocket = require('ws');
-const { Kafka } = require('kafkajs');
+import express from 'express';
+import http from 'http';
+import { setupWebSocket } from './websocket';
+import { startKafkaConsumer } from './kafka';
 
 const app = express();
-const server = app.listen(3000,()=>{
-    console.log('Server-a listening on port 3000');
+const server = http.createServer(app);
+
+// Setup WebSockets
+const io = setupWebSocket(server);
+
+// Start Kafka Consumer and Handle Errors
+(async () => {
+    try {
+        await startKafkaConsumer(io);
+        console.log('Kafka consumer started successfully');
+    } catch (error) {
+        console.error('Error starting Kafka consumer:', error);
+    }
+})();
+
+app.get('/api/significant-moments', (req, res) => {
+    res.json({ message: 'Significant moments endpoint' });
 });
 
-
-const wss = new WebSocket.Server({server});
-
-const kafka = new KafKa(
-    {
-        clientId: 'server-a',
-        brokers: ['9092'], //my kakfa broker address, such as 9092
-    }
-)
-
-const consumer = kafka.consumer({groupId: 'emote-group'});
-
-async function run(){
-    await consumer.connect();
-    await consumer.subscribe({
-        topic: 'aggregated-emote-data',
-        fromBeginning: true,
-    })
-
-    await consumer.run({
-        eachMessage: async ({topic, partition, message}) => {
-            const emoteData = JSON.parse(message.value.toString());
-            console.log('Received emoteData: ', emoteData);
-
-            wss.clients.forEach((client) => {
-                if (client.readyState === WebSocket.OPEN){
-                    client.send(JSON.stringify(emoteData));
-                }
-            })
-        }
-    })
-}
-
-run().catch(console.error);
-app.get('/',(req,res)=> {
-    res.send('Server A says hello');
-})
+const PORT = 3000;
+server.listen(PORT, () => {
+    console.log(`Server A running on port ${PORT}`);
+});
