@@ -1,0 +1,16 @@
+{
+  "name": "server_a",
+  "version": "1.0.0",
+  "description": "\"Server for displaying aggregated emote data and more\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "emote",
+    "data",
+    "websocket"
+  ],
+  "author": "LU JIE",
+  "license": "ISC"
+}
