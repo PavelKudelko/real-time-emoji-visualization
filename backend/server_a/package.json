@@ -12,5 +12,10 @@
     "websocket"
   ],
   "author": "LU JIE",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2",
+    "kafkajs": "^2.2.4",
+    "ws": "^8.18.1"
+  }
 }
