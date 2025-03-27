@@ -2,7 +2,7 @@ import { Kafka } from 'kafkajs';
 
 const kafka = new Kafka({
   clientId: 'server-a',
-  brokers: ['localhost:9092']
+  brokers: [process.env.KAFKA_BROKER || 'localhost:9092']
 });
 
 export async function startKafkaConsumer(io) {
@@ -10,13 +10,38 @@ export async function startKafkaConsumer(io) {
 
   await consumer.connect();
   await consumer.subscribe({ topic: 'aggregated-emote-data', fromBeginning: true });
-
+  await consumer.subscribe({topic: 'raw-emote-data', fromBeginning: true});
   await consumer.run({
     eachMessage: async ({ topic, partition, message }) => {
-      const significantMoment = JSON.parse(message.value.toString());
 
-      // Broadcast to WebSocket clients
-      io.emit('significant-moment', significantMoment);
+      try{
+
+        if (topic === 'aggregated-emote-data') {
+          const significantMoment = JSON.parse(message.value.toString());
+          // Broadcast to WebSocket clients
+          // significant-moment is similar to aggregatedData
+          io.emit('significant-moment', {
+            emote:significantMoment.emote,
+            timestamp: significantMoment.timestamp,
+            viewerCount: significantMoment.count
+          });
+
+        } else if (topic === 'raw-emote-data') {
+          const currentMoment = JSON.parse(message.value.toString());
+          io.emit('current-moment', {
+            emote:currentMoment.emote,
+            timestamp: currentMoment.timestamp,
+            viewerCount: currentMoment.viewerCount
+
+          })
+        }
+
+
+
+      } catch (error) {
+        console.log('Error processing message', message);
+      }
+
     },
   });
 

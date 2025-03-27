@@ -1,7 +1,7 @@
 import express from 'express';
 import http from 'http';
-import { setupWebSocket } from './websocket';
-import { startKafkaConsumer } from './kafka';
+import { setupWebSocket } from './websocket.js';
+import { startKafkaConsumer } from './kafka.js';
 
 const app = express();
 const server = http.createServer(app);
