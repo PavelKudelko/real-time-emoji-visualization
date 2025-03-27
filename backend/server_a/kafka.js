@@ -1,4 +1,5 @@
 import { Kafka } from 'kafkajs';
+import { setTimeout} from 'timers/promises'
 
 const kafka = new Kafka({
   clientId: 'server-a',
@@ -11,24 +12,57 @@ const kafka = new Kafka({
   }
 });
 
-export async function startKafkaConsumer(io) {
-  //adding admin but i dont know
+/*
+async function waitForGroupCoordinator(retries = 10, delay = 5000 ){
   const admin = kafka.admin();
+  await admin.connect();
+  for (let i = 0; i < retries; i++) {
+    try {
+      const groupDescription = await admin.describeGroups(["server-a-group"]);
+      const groupState = groupDescription.groups[0]?.state;
+
+      console.log(`Kafka Consumer Group State: ${groupState}`);
+
+      if (groupState === "Stable") {
+        console.log("Kafka Group Coordinator is ready!");
+        await admin.disconnect();
+        return;
+      }
+    } catch (error) {
+      console.error(`Failed to get group state (attempt ${i + 1}/${retries}):`, error);
+    }
+
+    await setTimeout(delay);
+  }
+
+  console.error("Group Coordinator did not become ready in time.");
+  await admin.disconnect();
+  throw new Error("Kafka Group Coordinator not ready");
+
+}*/
+
+export async function startKafkaConsumer(io) {
+  /*adding admin but i dont know*/
+  //const admin = kafka.admin();
   try {
-    // Create topics before consumer setup
+    /* Create topics before consumer setup
     await admin.connect();
     console.log('Connected to Kafka admin client');
 
     await admin.createTopics({
       topics: [
-        { topic: 'aggregated-emote-data', numPartitions: 1 },
-        { topic: 'raw-emote-data', numPartitions: 1 }
+        { topic: 'aggregated-emote-data', numPartitions: 1, replicationFactor: 1 },
+        { topic: 'raw-emote-data', numPartitions: 1 ,replicationFactor: 1 }
       ]
     });
     console.log('Topics created successfully');
 
     // Disconnect admin after topic creation
-    await admin.disconnect();
+    await admin.disconnect();*/
+
+    // 4️⃣ 🛠 wait for Group Coordinator to be okay
+    //await waitForGroupCoordinator();  // 👈 在这里等待
+
 
   const consumer = kafka.consumer({
     groupId: 'server-a-group' ,
@@ -52,16 +86,14 @@ export async function startKafkaConsumer(io) {
           // significant-moment is similar to aggregatedData
           io.emit('significant-moment', {
             emote:significantMoment.emote,
-            timestamp: significantMoment.timestamp,
-            viewerCount: significantMoment.count
+            timestamp: significantMoment.timestamp
           });
 
         } else if (topic === 'raw-emote-data') {
           const currentMoment = JSON.parse(message.value.toString());
           io.emit('current-moment', {
             emote:currentMoment.emote,
-            timestamp: currentMoment.timestamp,
-            viewerCount: currentMoment.viewerCount
+            timestamp: currentMoment.timestamp
 
           });
         }

@@ -6,21 +6,43 @@ const kafka = new Kafka({
 });
 
 const admin = kafka.admin();
-const producer = kafka.producer();
+const producer = kafka.producer({
+    createPartitioner: require('kafkajs').Partitioners.LegacyPartitioner
+});
 
 const emotes = ['❤️', '👍', '😢', '😡'];
-const topic = 'raw-emote-data';
+const topics = ['raw-emote-data', 'aggregated-emote-data'];
 
 const createTopics = async () => {
-    await admin.connect();
-    await admin.createTopics({
-        topics: [
-            { topic: 'raw-emote-data', numPartitions: 1, replicationFactor: 1 },
-            { topic: 'aggregated-emote-data', numPartitions: 1, replicationFactor: 1 }
-        ]
-    });
+    try {
+        await admin.connect();
 
-    await admin.disconnect();
+        // List existing topics
+        const existingTopics = await admin.listTopics();
+
+        // Filter topics that need to be created
+        const topicsToCreate = topics.filter(topic =>
+            !existingTopics.includes(topic)
+        );
+
+        // Create only missing topics
+        if (topicsToCreate.length > 0) {
+            await admin.createTopics({
+                topics: topicsToCreate.map(topic => ({
+                    topic,
+                    numPartitions: 1,
+                    replicationFactor: 1
+                }))
+            });
+            console.log('Topics created:', topicsToCreate);
+        } else {
+            console.log('All topics already exist');
+        }
+    } catch (error) {
+        console.error('Topic creation error:', error);
+    } finally {
+        await admin.disconnect();
+    }
 };
 
 const getRandomEmote = async () => {
@@ -31,11 +53,11 @@ const getRandomEmote = async () => {
 
 const sendMessage = async (message) => {
     await producer.send({
-        topic,
+        topic: 'raw-emote-data',
         messages: [{ value: JSON.stringify(message) }]
     });
 
-    //console.log('Message sent: ', message);
+    console.log('Message sent: ', message);
 }
 
 const generateEmotes = async () => {
