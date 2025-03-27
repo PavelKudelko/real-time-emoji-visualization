@@ -15,7 +15,7 @@
 
 #CMD [??]
 
-FROM node:latest
+FROM node:18
 # This says to use the latest Node.js image as the starting point.
 
 WORKDIR /app
@@ -29,6 +29,8 @@ RUN npm install
 
 COPY . .
 # This copies all the files from your server_a folder into the "app" folder. It's like putting all your server's code into its home.
+
+EXPOSE 3000
 
 CMD ["node", "index.js"]
 # This tells Docker to run "node index.js" when the container starts. "index.js" is usually the main file of a Node.js server.
