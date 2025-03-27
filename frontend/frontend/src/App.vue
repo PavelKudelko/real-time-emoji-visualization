@@ -22,9 +22,10 @@ let socket: Socket;
 
 onMounted(() => {
   // Connect to Server A's WebSocket
-  socket = io('http://localhost:3002');
+  socket = io('http://localhost:3000');
 
   socket.on('significant-moment', (moment) => {
+    console.log("Significant moment received:", moment);
     significantMoments.value.push(moment);
 
     // Limit to last 10 moments
@@ -32,6 +33,8 @@ onMounted(() => {
       significantMoments.value.shift();
     }
   });
+  socket.on("currentMoment", (moment) => {
+    console.log('Raw emote received: ', moment)})
 });
 
 onUnmounted(() => {
