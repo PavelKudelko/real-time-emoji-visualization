@@ -2,7 +2,7 @@ import { Kafka } from 'kafkajs';
 
 const kafka = new Kafka({
   clientId: 'server-a',
-  brokers: [process.env.KAFKA_BROKER || 'localhost:9092']
+  brokers: ['kafka:9092']
 });
 
 export async function startKafkaConsumer(io) {

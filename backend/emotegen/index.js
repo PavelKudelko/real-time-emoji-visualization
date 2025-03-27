@@ -2,7 +2,7 @@ const { Kafka } = require('kafkajs');
 
 const kafka = new Kafka({
     clientId: 'emotegenerator',
-    brokers: [process.env.KAFKA_BROKER || 'localhost:9092']
+    brokers: [ 'kafka:9092']
 });
 
 const admin = kafka.admin();
