@@ -49,7 +49,7 @@ services:
     ports:
       - "8080:80"
     environment:
-      - VITE_SOCKET_URL=ws://server_a:3000
+      - VITE_SOCKET_URL=http://server_a:3000
     networks:
       - frontend
       - backend
