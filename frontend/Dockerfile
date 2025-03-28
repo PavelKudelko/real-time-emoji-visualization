@@ -7,7 +7,8 @@
 #COPY . /usr/share/nginx/html
 #COPY nginx.conf /etc/nginx/conf.d/default.conf
 # Use official Node image as base
-FROM node:18-alpine
+
+FROM node:18-alpine AS builder
 # FROM node:18-alpine AS builder
 
 # Set working directory

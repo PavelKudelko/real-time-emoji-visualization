@@ -1,5 +1,5 @@
 import { Kafka } from 'kafkajs';
-import { setTimeout} from 'timers/promises'
+
 
 const kafka = new Kafka({
   clientId: 'server-a',
@@ -82,6 +82,7 @@ export async function startKafkaConsumer(io) {
 
         if (topic === 'aggregated-emote-data') {
           const significantMoment = JSON.parse(message.value.toString());
+          console.log('servera' + JSON.stringify(significantMoment));
           // Broadcast to WebSocket clients
           // significant-moment is similar to aggregatedData
           io.emit('significant-moment', {
@@ -91,6 +92,7 @@ export async function startKafkaConsumer(io) {
 
         } else if (topic === 'raw-emote-data') {
           const currentMoment = JSON.parse(message.value.toString());
+          console.log('servera' + JSON.stringify(currentMoment));
           io.emit('current-moment', {
             emote:currentMoment.emote,
             timestamp: currentMoment.timestamp

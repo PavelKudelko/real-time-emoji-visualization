@@ -42,6 +42,19 @@ services:
       timeout: 5s
       retries: 3
 
+  vue_website:
+    build:
+      context: ./frontend/frontend
+      dockerfile: ../../frontend/Dockerfile
+    ports:
+      - "8080:80"
+    environment:
+      - VITE_SOCKET_URL=ws://server_a:3000
+    networks:
+      - frontend
+      - backend
+
+
 
   server_a:
     build: ./backend/server_a
@@ -54,6 +67,7 @@ services:
       - KAFKA_BROKER=kafka:9092
     networks:
       - backend
+      - frontend
 
   emotegenerator:
     build: ./backend/emotegen
@@ -80,8 +94,9 @@ services:
 networks:
   backend:
     name: backend
-  fronted:
+  frontend:
     name: frontend
+    driver: bridge
 
 
 # If you use databases for storing information, you can define

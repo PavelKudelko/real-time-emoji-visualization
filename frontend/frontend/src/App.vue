@@ -11,7 +11,7 @@
       </div>
 
       <!-- Left Side Current Emoji List-->
-      <CurrentMoments class = "w-1/5 border-r-2 border-gray-200 overflow-hidden"/>
+      <CurrentMoments class = "w-1/5 border-r-2  overflow-y-auto" />
 
       <!--Bottom Significant Moments Animation -->
       <SignificantMoments class="h-1/5 bg-gray-50 overflow-x-auto"/>
@@ -22,6 +22,6 @@
 </template>
 
 <script setup lang="ts">
-import CurrentMoments from ;
-import SignificantMoments from ;
+import CurrentMoments from './components/CurrentMoments.vue';
+import SignificantMoments from './components/SignificantMoments.vue';
 </script>
