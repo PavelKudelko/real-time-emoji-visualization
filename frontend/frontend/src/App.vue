@@ -1,46 +1,27 @@
-<template>
-  <div class="significant-moments">
-    <h2 class="text-2xl font-bold mb-4">Significant Moments</h2>
-    <div
-      v-for="(moment, index) in significantMoments"
-      :key="index"
-      class="bg-blue-100 p-4 mb-2 rounded-lg"
-    >
-      <p>Emote: {{ moment.emote }}</p>
-      <p>Timestamp: {{ moment.timestamp }}</p>
-      <p>Viewers: {{ moment.viewerCount }}</p>
+<template >
+  <div class="flex justify-center min-h-screen bg-gray-100">
+    <div class="w-4/5 bg-white shadow-lg flex flex-col">
+
+      <!-- Main Content Area-->
+      <div id="video-container" class="flex-grow flex items-center justify-center">
+        <!-- Placeholder for streaming video-->
+        <div class="w-3/4 h-2/3 bg-gray-200 flex items-center justify-center">
+          <p>Livestream Placeholder</p>
+        </div>
+      </div>
+
+      <!-- Left Side Current Emoji List-->
+      <CurrentMoments class = "w-1/5 border-r-2 border-gray-200 overflow-hidden"/>
+
+      <!--Bottom Significant Moments Animation -->
+      <SignificantMoments class="h-1/5 bg-gray-50 overflow-x-auto"/>
+
     </div>
   </div>
+
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue';
-import { io, Socket } from 'socket.io-client';
-
-const significantMoments = ref<any[]>([]);
-let socket: Socket;
-
-onMounted(() => {
-  // Connect to Server A's WebSocket
-  socket = io('http://localhost:3000');
-
-  socket.on('significant-moment', (moment) => {
-    console.log("Significant moment received:", moment);
-    significantMoments.value.push(moment);
-
-    // Limit to last 10 moments
-    if (significantMoments.value.length > 10) {
-      significantMoments.value.shift();
-    }
-  });
-  socket.on("currentMoment", (moment) => {
-    console.log('Raw emote received: ', moment)})
-});
-
-onUnmounted(() => {
-  // Disconnect socket when component is unmounted
-  if (socket) {
-    socket.disconnect();
-  }
-});
+import CurrentMoments from ;
+import SignificantMoments from ;
 </script>
