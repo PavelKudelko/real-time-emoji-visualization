@@ -12,12 +12,21 @@ const moments = ref<Moments[]>([]);
 let socket: Socket;
 
 onMounted(() => {
+  //test data
+  moments.value = [
+    { timestamp: "12:30:01", emote: "😊" },
+    { timestamp: "12:30:05", emote: "😂" },
+    { timestamp: "12:30:10", emote: "😍" },
+    { timestamp: "12:30:15", emote: "😎" },
+    { timestamp: "12:30:20", emote: "🥳" },
+  ];
   // Use environment variable for WebSocket URL
-  socket = io('ws://localhost:3000' );
+   socket = io('ws://localhost:3000' );
   // if we are using http, we write it like this
-  //socket = io('http://localhost:3000' );
-   // socket = io(import.meta.env.VITE_SOCKET_URL  );
-
+  //socket = io('http://localhost:3000' );   okay
+  // socket = io(import.meta.env.VITE_SOCKET_URL  );   not okay
+  //  socket = io('http://server_a:3000'); not okay
+   // socket = io('http://host.docker.internal:3000'); not okay
   // const SOCKET_URL = import.meta.env.DEV
   //   ? 'http://localhost:3000'    // Local development
   //   : import.meta.env.VITE_SOCKET_URL || 'http://server-a:3000';  // Docker environment
@@ -67,9 +76,9 @@ onUnmounted(() => {
     </h2>
 
     <div v-for="(moment, index) in moments" :key="index"
-        class="flex items-center mb--2 p-2 bg-gray-100 rounded">
-      <span class="mr-2">{{moment.timestamp}}}</span>
-      <span class="text-2xl">{{moment.emote}}}</span>
+        class="flex items-center mb--2 p-2 rounded">
+      <span class="mr-2 opacity-60">{{moment.timestamp}}:</span>
+      <span class="text-2xl">{{moment.emote}}</span>
     </div>
   </div>
 </template>

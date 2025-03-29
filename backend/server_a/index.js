@@ -23,7 +23,8 @@ app.get('/api/significant-moments', (req, res) => {
     res.json({ message: 'Significant moments endpoint' });
 });
 
+// Listen on 0.0.0.0 to accept connections from all network interfaces
 const PORT = 3000;
-server.listen(PORT, () => {
+server.listen(PORT,'0.0.0.0', () => {
     console.log(`Server A running on port ${PORT}`);
 });

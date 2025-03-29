@@ -6,7 +6,6 @@ export function setupWebSocket(server) {
       origin: [ '*' ,
            "http://server_a:3000",
            "http://localhost:3000",
-          // "http://localhost:5173",
            "http://localhost:8080"],
 
       methods: ["GET", "POST"]
