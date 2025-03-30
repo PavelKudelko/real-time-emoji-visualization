@@ -1,22 +1,26 @@
 <template >
-  <div class="flex justify-center min-h-screen bg-gray-100">
-    <div class="w-4/5 bg-white shadow-lg flex flex-col">
+  <div class="justify-center ">
+    <div id="Mainheader" class="min-h-60">
+      <div id="header-bar">imagine i have a menu bar</div>
+      <div id="search-bar">imagine i have a search bar</div>
+    </div>
 
-      <div class="relative flex min-h-screen w-full justify-center items-center">
-        <!-- Main Content Area-->
-        <div id="video-container" class="flex-grow flex h-screen w-4/5 items-center justify-center">
+    <!-- Main Content Area-->
+      <div id = "playwrap" class=" flex  w-full ">
+
           <!-- Placeholder for streaming video-->
-            <video-player class="w-full h-full" :options="videoOptions"></video-player>
+            <video-player class="relative flex-grow flex w-full h-full items-center justify-center" :options="videoOptions">
+              <div>
+                <!-- Left Side Current Emoji List-->
+                <CurrentMoments id="current-moment" class="absolute border-r-2 overflow-y-auto " />
+              </div>
+            </video-player>
 
-        </div>
-
-        <!-- Left Side Current Emoji List-->
-        <CurrentMoments class = "absolute w-1/5 bottom-0 border-r-2  overflow-y-auto" />
       </div>
       <!--Bottom Significant Moments Animation -->
-      <SignificantMoments class="h-1/5 bg-gray-50 overflow-x-auto"/>
+      <SignificantMoments class="h-1/5 w-full overflow-x-auto"/>
 
-    </div>
+
   </div>
 
 </template>
@@ -37,8 +41,17 @@ const videoOptions = ref({
     type: 'video/mp4'
   }],
   controls: true,
-  aspectRatio: "9:16",
-  width: '100%',
-  height: '100%'
+  aspectRatio: "16:9",
+
 });
 </script>
+
+<style scoped>
+
+#current-moment {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+</style>

@@ -71,13 +71,13 @@ onUnmounted(() => {
 
 <template>
   <div class="p-2">
-    <h2 class="text-lg font-bond mb--2">
+    <h2 class="text-lg ">
       Current Emotions
     </h2>
 
     <div v-for="(moment, index) in moments" :key="index"
-        class="flex items-center mb--2 p-2 rounded">
-      <span class="mr-2 opacity-60">{{moment.timestamp}}:</span>
+        class="flex ">
+      <span class="mr-2 ">{{moment.timestamp}}:</span>
       <span class="text-2xl">{{moment.emote}}</span>
     </div>
   </div>
