@@ -19,13 +19,16 @@
       </div>
       <!--Bottom Significant Moments Animation -->
       <SignificantMoments class="h-1/5 w-full overflow-x-auto"/>
-
+    <div>
+      emojiBlasts();
+    </div>
 
   </div>
 
 </template>
 
 <script setup lang="ts">
+import {onMounted} from "vue";
 import { ref } from 'vue';
 import { VideoPlayer } from '@videojs-player/vue';
 import 'video.js/dist/video-js.css';
@@ -33,6 +36,8 @@ import 'video.js/dist/video-js.css';
 import './input.css'
 import CurrentMoments from './components/CurrentMoments.vue';
 import SignificantMoments from './components/SignificantMoments.vue';
+
+import { emojiBlast, emojiBlasts } from "emoji-blast";
 
 
 const videoOptions = ref({
@@ -44,6 +49,12 @@ const videoOptions = ref({
   aspectRatio: "16:9",
 
 });
+
+onMounted(()=>{
+  emojiBlasts({emojis:["💖","❤️", "🧡", "💛", "💚", "💙", "💜"],
+  });
+});
+
 </script>
 
 <style scoped>
