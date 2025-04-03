@@ -1,13 +1,13 @@
 <template >
   <div class="justify-center ">
+    <!--header area-->
     <div id="Mainheader" class="min-h-60">
-      <div id="header-bar">imagine i have a menu bar</div>
+      <div id="header-bar" class="font-italic">imagine i have a menu bar</div>
       <div id="search-bar">imagine i have a search bar</div>
     </div>
 
     <!-- Main Content Area-->
-      <div id = "playwrap" class=" flex  w-full ">
-
+      <div id = "playwrap" class="relative flex  w-full ">
           <!-- Placeholder for streaming video-->
             <video-player class="relative flex-grow flex w-full h-full items-center justify-center" :options="videoOptions">
               <div>
@@ -17,24 +17,24 @@
             </video-player>
 
       </div>
-      <!--Bottom Significant Moments Animation -->
-      <SignificantMoments class="h-1/5 w-full overflow-x-auto"/>
 
+      <!-- Significant Moments bar  -->
+      <SignificantMoments/>
+      <ThresholdControl @update-threshold="handleThresholdUpdate"/>
   </div>
 
 </template>
 
 <script setup lang="ts">
-import {onMounted} from "vue";
 import { ref } from 'vue';
 import { VideoPlayer } from '@videojs-player/vue';
 import 'video.js/dist/video-js.css';
 
 import './input.css'
-import CurrentMoments from './components/CurrentMoments.vue';
-import SignificantMoments from './components/SignificantMoments.vue';
+import CurrentMoments from './components/CurrentMomentsDisplay.vue';
+import SignificantMoments from './components/SignificantMomentsDisplay.vue';
+import ThresholdControl from "@/components/EmojiDisplayControls.vue";
 
-import {emojiBlasts } from "emoji-blast";
 
 
 const videoOptions = ref({
@@ -47,11 +47,16 @@ const videoOptions = ref({
 
 });
 
+const threshold = ref(50);
 
-onMounted(()=>{
-  emojiBlasts({emojis:["💖","❤️", "🧡", "💛", "💚", "💙", "💜"],
-  });
-});
+const handleThresholdUpdate = (newThreshold:number) => {
+  threshold.value = newThreshold;
+};
+
+// onMounted(()=>{
+//   emojiBlasts({emojis:["💖","❤️", "🧡", "💛", "💚", "💙", "💜"],
+//   });
+// });
 
 </script>
 
