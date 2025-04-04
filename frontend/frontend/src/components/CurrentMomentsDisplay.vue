@@ -13,13 +13,13 @@ let socket: Socket;
 
 onMounted(() => {
   //test data
-  moments.value = [
-    { timestamp: "12:30:01", emote: "😊" },
-    { timestamp: "12:30:05", emote: "😂" },
-    { timestamp: "12:30:10", emote: "😍" },
-    { timestamp: "12:30:15", emote: "😎" },
-    { timestamp: "12:30:20", emote: "🥳" },
-  ];
+  // moments.value = [
+  //   { timestamp: "12:30:01", emote: "😊" },
+  //   { timestamp: "12:30:05", emote: "😂" },
+  //   { timestamp: "12:30:10", emote: "😍" },
+  //   { timestamp: "12:30:15", emote: "😎" },
+  //   { timestamp: "12:30:20", emote: "🥳" },
+  // ];
   // Use environment variable for WebSocket URL
    socket = io('ws://localhost:3000' );
   // if we are using http, we write it like this

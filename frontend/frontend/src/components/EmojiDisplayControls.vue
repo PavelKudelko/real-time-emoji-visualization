@@ -6,7 +6,7 @@ const emit = defineEmits(["update-threshold"]);
 
 const updateThreshold = () => {
   emit("update-threshold", threshold.value);
- //"http://server-b:3000/api/set-threshold"
+ //"http://server-b:3001/api/set-threshold"
   fetch("http://your-server-b.com/api/set-threshold", {
     method: "POST",
     headers: { "Content-Type": "application/json" },

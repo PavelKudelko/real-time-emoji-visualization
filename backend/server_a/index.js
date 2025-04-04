@@ -19,9 +19,9 @@ const io = setupWebSocket(server);
     }
 })();
 
-app.get('/api/significant-moments', (req, res) => {
-    res.json({ message: 'Significant moments endpoint' });
-});
+// app.get('/api/significant-moments', (req, res) => {
+//     res.json({ message: 'Significant moments endpoint' });
+// });
 
 // Listen on 0.0.0.0 to accept connections from all network interfaces
 const PORT = 3000;
