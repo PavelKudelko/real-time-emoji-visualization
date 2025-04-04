@@ -4,6 +4,8 @@ const {getSettings, updateSettings} = require('../config/settings');
 const getInterval = async (req, res) => {
     try {
         const settings = getSettings();
+        //debug
+        console.log("Settings object:", settings.interval);
         res.status(200).json({ interval: settings.interval });
     }
     catch (error) {
@@ -85,4 +87,13 @@ const updateAllowedEmotes = async (req, res) => {
             error: error.message
         });
     }
+};
+
+module.exports = {
+    getInterval,
+    updateInterval,
+    getThreshold,
+    updateThreshold,
+    getAllowedEmotes,
+    updateAllowedEmotes
 };

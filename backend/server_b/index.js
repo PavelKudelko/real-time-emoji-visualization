@@ -2,7 +2,7 @@
 const express = require('express');
 // logging library for debug
 const morgan = require('morgan');
-const settingsRoutes = require('./routes/settings');
+const settingsRoutes = require('./routes/settingsRoutes');
 
 const PORT = 3001;
 
