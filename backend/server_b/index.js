@@ -1,8 +1,9 @@
-
 const express = require('express');
 // logging library for debug
 const morgan = require('morgan');
 const settingsRoutes = require('./routes/settingsRoutes');
+// kafka
+const { startConsumer } = require('./services/kafkaService')
 
 const PORT = 3001;
 
@@ -17,6 +18,9 @@ app.use(morgan('dev'));
 const runServer = async() => {
   server.listen(PORT, () => {
     console.log(`server-b listening on port ${PORT}`);
+    startConsumer()
+      .then(() => console.log('Kafka consumer started successfully'))
+      .catch(err => console.error('Failed to start Kafka consumer:', err));
   });
 };
 
