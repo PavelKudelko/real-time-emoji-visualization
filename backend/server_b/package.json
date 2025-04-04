@@ -1,0 +1,17 @@
+{
+  "name": "server_b",
+  "version": "1.0.0",
+  "description": "Server b: consumes raw emote data and produces aggregated data to kafka topic. Provides RESTfull api for managing aggregation settings",
+  "license": "ISC",
+  "author": "Pavel Kudelko",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "kafkajs": "^2.2.4",
+    "morgan": "^1.10.0"
+  }
+}
