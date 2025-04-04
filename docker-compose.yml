@@ -80,7 +80,7 @@ services:
   # service above. Groups are free to
   # CRUD this set of instructions as they see fit.
   server_b:
-      build: .backend/server_b
+      build: ./backend/server_b
       ports:
         - "3001:3001"
       depends_on:
@@ -90,6 +90,7 @@ services:
         - KAFKA_BROKER=kafka:9092
       networks:
         - backend
+        - frontend
 
 # Here we create a named network, that all the backend components
 # must be added to for them to be able to communicate through
