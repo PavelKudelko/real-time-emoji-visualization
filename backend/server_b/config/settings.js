@@ -1,5 +1,5 @@
 const settings = {
-    interval: 20, // let's say we analyse every 10 messages
+    interval: 60, // let's say we analyse every 10 messages
     threshold: 0.6, // let's say default is 10%
     allowedEmotes: ['❤️', '👍', '😢', '😡']
 };

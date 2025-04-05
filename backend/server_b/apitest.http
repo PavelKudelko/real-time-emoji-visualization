@@ -37,15 +37,15 @@ PUT {{baseUrl}}/threshold
 Content-Type: application/json
 
 {
-  "threshold": 0.25
+  "threshold": 50
 }
 
-### PUT with invalid data (threshold > 1)
+### PUT with invalid data (threshold > 100)
 PUT {{baseUrl}}/threshold
 Content-Type: application/json
 
 {
-  "threshold": 1.5
+  "threshold": 101
 }
 
 ### PUT with invalid data (threshold <= 0)
