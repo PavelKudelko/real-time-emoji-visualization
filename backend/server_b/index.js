@@ -4,6 +4,8 @@ const morgan = require('morgan');
 const settingsRoutes = require('./routes/settingsRoutes');
 // kafka
 const { startConsumer } = require('./services/kafkaService')
+// cors
+const cors = require('cors');
 
 const PORT = 3001;
 
@@ -14,6 +16,12 @@ const server = http.createServer(app);
 
 app.use(express.json());
 app.use(morgan('dev'));
+// allow all for now
+const corsOptions = {
+  origin: '*',
+  methods: 'GET, PUT, HEAD, POST',
+};
+app.use(cors(corsOptions));
 
 const runServer = async() => {
   server.listen(PORT, () => {
