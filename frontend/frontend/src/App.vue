@@ -41,6 +41,7 @@ const videoOptions = ref({
   sources: [{
     src: 'placeholder.mp4',
     type: 'video/mp4'
+    // kinda wanna put her never gonna give you up never gonna let you down
   }],
   controls: true,
   aspectRatio: "16:9",
