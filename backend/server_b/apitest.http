@@ -1,0 +1,81 @@
+### API test file for "REST client"
+@baseUrl = http://localhost:3001/settings
+
+### GET interval
+GET {{baseUrl}}/interval
+Accept: application/json
+
+### PUT interval with valid data
+PUT {{baseUrl}}/interval
+Content-Type: application/json
+
+{
+  "interval": 100
+}
+
+### Put interval with invalid data
+PUT {{baseUrl}}/interval
+Content-Type: application/json
+
+{
+  "interval": 10.5
+}
+
+### Put interval with missing data
+PUT {{baseUrl}}/interval
+Content-Type: application/json
+
+{
+}
+
+### Get threshold
+GET {{baseUrl}}/threshold
+Accept: application/json
+
+###  PUT with valid data threshold
+PUT {{baseUrl}}/threshold
+Content-Type: application/json
+
+{
+  "threshold": 50
+}
+
+### PUT with invalid data (threshold > 100)
+PUT {{baseUrl}}/threshold
+Content-Type: application/json
+
+{
+  "threshold": 101
+}
+
+### PUT with invalid data (threshold <= 0)
+PUT {{baseUrl}}/threshold
+Content-Type: application/json
+
+{
+  "threshold": 0
+}
+
+### Test allowed-emotes endpoint - GET
+GET {{baseUrl}}/allowed-emotes
+Accept: application/json
+
+### PUT with valid data emotes
+PUT {{baseUrl}}/allowed-emotes
+Content-Type: application/json
+
+{
+  "allowedEmotes": ["😊", "😀", "👍", "❤️"]
+}
+
+### PUT with invalid data emotes
+PUT {{baseUrl}}/allowed-emotes
+Content-Type: application/json
+
+{
+  "allowedEmotes": ["😊", 123, "👍"]
+}
+
+### Test non-existent route
+GET {{baseUrl}}/nonexistent
+Accept: application/json

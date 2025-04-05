@@ -6,11 +6,13 @@ const emit = defineEmits(["update-threshold"]);
 
 const updateThreshold = () => {
   emit("update-threshold", threshold.value);
- //"http://server-b:3000/api/set-threshold"
-  fetch("http://your-server-b.com/api/set-threshold", {
-    method: "POST",
+  //  we don't know why but the link above not working, only localhost link working
+  // "http://server-b:3001/threshold"
+  const numericThreshold = Number(threshold.value);
+  fetch("http://localhost:3001/settings/threshold", {
+    method: "PUT",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ threshold: threshold.value }),
+    body: JSON.stringify({ threshold: numericThreshold }),
   });
 };
 </script>
