@@ -35,10 +35,10 @@ const validateThreshold = (req, res, next) => {
     });
   }
 
-  if (typeof threshold !== 'number' || threshold <= 0 || threshold >= 1) {
+  if (typeof threshold !== 'number' || threshold < 0 || threshold > 100) {
     return res.status(400).json({
       error: 'Bad Request',
-      message: 'Threshold must be a number between 0 and 1 (exclusive)'
+      message: 'Threshold must be a number between 0 and 100 (inclusive)'
     });
   }
 

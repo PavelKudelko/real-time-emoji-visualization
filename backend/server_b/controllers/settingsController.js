@@ -46,9 +46,11 @@ const getThreshold = async (req, res) => {
 const updateThreshold = async (req, res) => {
     try {
         const { threshold } = req.body;
-        updateSettings('threshold', threshold);
+        // Convert threshold from 0-100 scale to 0-1 scale
+        const normalizedThreshold = threshold / 100;
+        updateSettings('threshold', normalizedThreshold);
         res.status(200).json({
-            threshold: getSettings.threshold,
+            threshold: getSettings.normalizedThreshold,
             message: 'Threshold updated successfully'
         });
     }
