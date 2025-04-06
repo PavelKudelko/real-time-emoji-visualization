@@ -28,8 +28,8 @@ Implementation:
     EmojiDispalyControls vue component passes user selected emoji threshold to backend server_b with PUT Api communication
     CurrentMomentDisplay vue component loads current emojis received from backend server_a
 
-***Backend Component***
-<server_a>
+## Backend Component
+***server_a***
 - Purpose: Receives emote data by subscribing to emoji topics from kafka, emits JSON parsed data to frontend with websocket
     raw-emote-data: Provides real-time emote usage data.
     aggregated-emote-data: Represents significant or aggregated emote events.
@@ -51,7 +51,7 @@ Implementation:
         Listens for client connections and disconnections.
         Provides a channel for broadcasting emote updates received from Kafka.
 
-<server b>
+***Server_b***
 - Purpose: Aggregates raw emote data from kafka, generates significant moments and sends to kafka topic.
         Provides RESTfull API for user settings (threshold, interval, allowedEmotes).
 - Implementation:
