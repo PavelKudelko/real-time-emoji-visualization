@@ -1,7 +1,7 @@
 <template >
   <div class="justify-center ">
     <!--header area-->
-    <div id="Mainheader" class="min-h-60">
+    <div id="Mainheader" class="min-h-60 p-2">
       <MenuBar/>
     </div>
 
@@ -62,7 +62,7 @@ const handleThresholdUpdate = (newThreshold:number) => {
   right: 0;
   top: 0;
   padding: 1rem;
-  background: linear-gradient(to right, #ffc0cb 50%, transparent 50%);
+  background: #ffc0cb 100%;
   border-radius: 0.5rem;
 }
 
