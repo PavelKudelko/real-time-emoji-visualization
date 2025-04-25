@@ -6,8 +6,8 @@ const emit = defineEmits(["update-threshold"]);
 
 const updateThreshold = () => {
   emit("update-threshold", threshold.value);
-  //  we don't know why but the link above not working, only localhost link working
-  // "http://server-b:3001/threshold"
+  //  we don't know why but the link  not working, only localhost link working
+  // "http://server_b:3001/threshold"
   const numericThreshold = Number(threshold.value);
   fetch("http://localhost:3001/settings/threshold", {
     method: "PUT",
