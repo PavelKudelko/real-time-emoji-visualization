@@ -1,7 +1,7 @@
 <template >
   <div class="justify-center ">
     <!--header area-->
-    <div id="Mainheader" class="min-h-60 p-2">
+    <div id="Mainheader" class="min-h-60">
       <MenuBar/>
     </div>
 
@@ -62,8 +62,7 @@ const handleThresholdUpdate = (newThreshold:number) => {
   right: 0;
   top: 0;
   padding: 1rem;
-  background: #ffc0cb 100%;
-  border-radius: 0.5rem;
+  background: #f4c5cd 100%;
 }
 
 #significant-moment{
@@ -72,4 +71,15 @@ const handleThresholdUpdate = (newThreshold:number) => {
   bottom: 0;
 }
 
+#Mainheader{
+  padding: 1rem;
+  background: #ede0e2 50%;
+}
+
+#playwrap{
+  padding: 1rem;
+  background: #e0edec 50%;
+
+
+}
 </style>

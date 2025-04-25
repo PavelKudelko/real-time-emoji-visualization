@@ -18,7 +18,7 @@ const updateThreshold = () => {
 </script>
 
 <template>
-  <div class="font-mono bg-gray-700 p-4 rounded-lg shadow-md w-[15rem]">
+  <div class="font-mono bg-gray-700 p-4 rounded-lg shadow-md w-[14rem]">
     <label class="text-gray-200 block mb-2 "> Emoji Threshold: {{ threshold }}%</label>
     <input
       type="range"

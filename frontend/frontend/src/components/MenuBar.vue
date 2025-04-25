@@ -1,5 +1,5 @@
 <template>
-  <div class="navbar-container p-4">
+  <div class="navbar-container">
     <!-- Main Navigation Bar -->
     <nav class="bg-gray-800 text-white shadow-lg">
       <div class=" mx-auto px-4 sm:px-6 lg:px-8">
