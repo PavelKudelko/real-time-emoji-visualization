@@ -1,12 +1,12 @@
 <template>
-  <div class="navbar-container">
+  <div class="navbar-container p-4">
     <!-- Main Navigation Bar -->
     <nav class="bg-gray-800 text-white shadow-lg">
       <div class=" mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
 
           <!-- Search Bar -->
-          <div class="flex-1 flex  px-2 lg:ml-6 lg:justify-end">
+          <div class="flex-1 flex  px-2 lg:ml-6 lg:justify-end p-4">
             <div class="  lg:max-w-xs">
               <label for="search" class="sr-only">Search</label>
               <div class="relative">

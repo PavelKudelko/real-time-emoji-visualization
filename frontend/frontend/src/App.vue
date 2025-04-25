@@ -7,25 +7,30 @@
 
     <!-- Main Content Area-->
       <div id = "playwrap" class=" relative flex  w-full ">
-          <!-- Youtube video with Overlay-->
-        <div class=" relative flex-grow flex w-full items-center justify-center">
-        <YouTube
-          height="540"
-          width="960"
-          src="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-          ref="youtube"/>
-          <div>
-            <!-- Left Side Current Emoji List-->
-            <CurrentMoments id="current-moment" class="absolute border-r-2 overflow-y-auto " />
+
+        <!-- Youtube video on the left-->
+        <div class=" relative flex-grow flex w-full left:0">
+          <YouTube
+            height="540"
+            width="960"
+            src="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+            ref="youtube"/>
+        </div>
+
+        <div id="emoji-box">
+          <!-- right Side Current Emoji List-->
+          <CurrentMoments id="current-moment" class="absolute overflow-y-auto " />
+
+          <!-- right side Significant Moments bar  -->
+          <div id="significant-moment" class="absolute">
+            <SignificantMoments/>
+            <ThresholdControl @update-threshold="handleThresholdUpdate"/>
           </div>
+
         </div>
       </div>
 
-      <!-- Significant Moments bar  -->
-      <div>
-        <SignificantMoments/>
-        <ThresholdControl @update-threshold="handleThresholdUpdate"/>
-      </div>
+
   </div>
 
 </template>
@@ -54,7 +59,16 @@ const handleThresholdUpdate = (newThreshold:number) => {
 
 #current-moment {
   position: absolute;
-  left: 0;
+  right: 0;
+  top: 0;
+  padding: 1rem;
+  background: linear-gradient(to right, #ffc0cb 50%, transparent 50%);
+  border-radius: 0.5rem;
+}
+
+#significant-moment{
+  position: absolute;
+  right: 0;
   bottom: 0;
 }
 

@@ -18,12 +18,7 @@ const updateThreshold = () => {
 </script>
 
 <template>
-  <!--simple display-->
-<!--  <div>-->
-<!--    <label>Threshold: {{ threshold }}%</label>-->
-<!--    <input type="range" v-model="threshold" min="0" max="100" @change="updateThreshold" />-->
-<!--  </div>-->
-  <div class="font-mono bg-gray-700 p-4 rounded-lg shadow-md">
+  <div class="font-mono bg-gray-700 p-4 rounded-lg shadow-md w-[15rem]">
     <label class="text-gray-200 block mb-2 "> Emoji Threshold: {{ threshold }}%</label>
     <input
       type="range"
