@@ -19,6 +19,19 @@ onMounted(() => {
   //   { timestamp: "12:30:10", emote: "😍" },
   //   { timestamp: "12:30:15", emote: "😎" },
   //   { timestamp: "12:30:20", emote: "🥳" },
+  //   { timestamp: "12:30:01", emote: "😊" },
+  //   { timestamp: "12:30:05", emote: "😂" },
+  //   { timestamp: "12:30:10", emote: "😍" },
+  //   { timestamp: "12:30:15", emote: "😎" },
+  //   { timestamp: "12:30:20", emote: "🥳" },
+  //   { timestamp: "12:30:01", emote: "😊" },
+  //   { timestamp: "12:30:05", emote: "😂" },
+  //   { timestamp: "12:30:10", emote: "😍" },
+  //   { timestamp: "12:30:15", emote: "😎" },
+  //   { timestamp: "12:30:20", emote: "🥳" },
+  //   { timestamp: "12:30:01", emote: "😊" },
+  //   { timestamp: "12:30:05", emote: "😂" },
+
   // ];
   // Use environment variable for WebSocket URL
    socket = io('ws://localhost:3000' );
@@ -52,8 +65,8 @@ onMounted(() => {
         emote: moment.emote
       });
 
-      // Keep only the last 10 moments
-      if (moments.value.length > 10) {
+      // Keep only the last 15 moments
+      if (moments.value.length > 11) {
         moments.value.pop();
       }
     });
@@ -71,7 +84,7 @@ onUnmounted(() => {
 
 <template>
   <div class="p-2">
-    <h2 class="text-lg ">
+    <h2 class="text-lg mb-2">
       Current Emotions
     </h2>
 
@@ -82,6 +95,5 @@ onUnmounted(() => {
     </div>
   </div>
 </template>
-
 
 

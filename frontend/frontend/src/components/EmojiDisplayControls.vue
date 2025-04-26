@@ -6,8 +6,8 @@ const emit = defineEmits(["update-threshold"]);
 
 const updateThreshold = () => {
   emit("update-threshold", threshold.value);
-  //  we don't know why but the link above not working, only localhost link working
-  // "http://server-b:3001/threshold"
+  //  we don't know why but the link  not working, only localhost link working
+  // "http://server_b:3001/threshold"
   const numericThreshold = Number(threshold.value);
   fetch("http://localhost:3001/settings/threshold", {
     method: "PUT",
@@ -18,12 +18,7 @@ const updateThreshold = () => {
 </script>
 
 <template>
-  <!--simple display-->
-<!--  <div>-->
-<!--    <label>Threshold: {{ threshold }}%</label>-->
-<!--    <input type="range" v-model="threshold" min="0" max="100" @change="updateThreshold" />-->
-<!--  </div>-->
-  <div class="font-mono bg-gray-700 p-4 rounded-lg shadow-md">
+  <div class="font-mono bg-gray-700 p-4 rounded-lg shadow-md w-[14rem]">
     <label class="text-gray-200 block mb-2 "> Emoji Threshold: {{ threshold }}%</label>
     <input
       type="range"
