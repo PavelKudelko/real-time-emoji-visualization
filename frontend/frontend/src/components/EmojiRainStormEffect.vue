@@ -18,7 +18,7 @@ let rainDrops = [];
 
 const startRain = () => {
   // Stop any existing rain first ( or not)
-  // stopRain();
+  stopRain();
 
   for (let i = 0; i < window.innerWidth; i += 25) {
     const randGravity = Math.random() * 0.3 + 0.1;
@@ -48,7 +48,7 @@ const stopRain = () => {
   rainDrops = [];
 };
 
-onMounted(startRain);
+//onMounted(startRain);
 onUnmounted(stopRain);
 
 // Restart the effect when the emoji changes
