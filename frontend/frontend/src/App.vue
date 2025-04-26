@@ -21,7 +21,7 @@
           <!-- right Side Current Emoji List-->
           <CurrentMoments id="current-moment" class="absolute overflow-y-auto " />
 
-          <!-- right side Significant Moments bar  -->
+          <!-- right side Significant Moments bar + animation -->
           <div id="significant-moment" class="absolute">
             <SignificantMoments/>
             <ThresholdControl @update-threshold="handleThresholdUpdate"/>
@@ -30,6 +30,14 @@
         </div>
       </div>
 
+
+           <!-- right side interval control bar  -->
+           <div id="interval-control" class="absolute right-4 top-20 w-64">
+            <IntervalControl
+            :min="10"
+            :max ="200"
+            @update-threshold="handleIntervalUpdate"/>
+          </div>
 
   </div>
 
@@ -44,15 +52,20 @@ import './input.css'
 import CurrentMoments from './components/CurrentMomentsDisplay.vue';
 import SignificantMoments from './components/SignificantMomentsDisplay.vue';
 import ThresholdControl from "@/components/EmojiDisplayControls.vue";
+import IntervalControl from "@/components/EmojiIntervalControls.vue";
 import MenuBar from "@/components/MenuBar.vue";
 
 
 const threshold = ref(50);
+const interval = ref(60);
 
 const handleThresholdUpdate = (newThreshold:number) => {
   threshold.value = newThreshold;
 };
 
+const handleIntervalUpdate = (newInterval: number) => {
+  interval.value = newInterval;
+};
 </script>
 
 <style scoped>
@@ -69,6 +82,10 @@ const handleThresholdUpdate = (newThreshold:number) => {
   position: absolute;
   right: 0;
   bottom: 0;
+}
+
+#interval-control{
+  position:absolute;
 }
 
 #Mainheader{
