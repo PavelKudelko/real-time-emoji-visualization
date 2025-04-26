@@ -31,7 +31,7 @@ onMounted(() => {
   //   { timestamp: "12:30:20", emote: "🥳" },
   //   { timestamp: "12:30:01", emote: "😊" },
   //   { timestamp: "12:30:05", emote: "😂" },
-  //
+
   // ];
   // Use environment variable for WebSocket URL
    socket = io('ws://localhost:3000' );
@@ -66,7 +66,7 @@ onMounted(() => {
       });
 
       // Keep only the last 15 moments
-      if (moments.value.length > 15) {
+      if (moments.value.length > 11) {
         moments.value.pop();
       }
     });
