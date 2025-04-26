@@ -166,4 +166,7 @@ yarn-error.log
 # mac
 .DS_Store
 
+# Ignore JetBrains IDE settings
+.idea/
+
 # End of https://www.toptal.com/developers/gitignore/api/node,vuejs,git
